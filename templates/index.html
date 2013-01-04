@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+
+{% for biz in businesses %}
+
+<div class="media">
+  <a class="pull-left" href="#">
+    <img class="media-object" src="{{biz.photo_url}}" data-src="{{biz.photo_url}}">
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">{{biz.name}}</h4>
+    {{biz.city}}, {{biz.state}} - {{biz.phone}}
+    <p>
+    {% if biz.p_bh %}
+    <em>Total of <strong>{{biz.p_bh_c}}</strong> people said they've been here including You!</em>
+    {% else %}
+    <a href="/?bh={{biz.id}}&user={{user}}" class="btn btn-small btn-inverse" type="button">Been here</a>
+    <a href="/?wtt={{biz.id}}&user={{user}}" class="btn btn-small btn-inverse" type="button">Want to try</a>
+    {% endif %}
+    </p>
+  </div>
+</div>
+{% endfor %}
+
+</div>
+{% endblock %}
